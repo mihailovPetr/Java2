@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Main {
 
-    static final int size = 10000000;
+    static final int size = 20000000;
     static final int h = size / 2;
 
     static void arrCalculations(float[] arr, int startIndex) {
@@ -46,34 +46,41 @@ public class Main {
 
         Thread[] threads = new Thread[threadNumber];
 
+        int startIndex;
+        int endIndex = 0;
+
         for (int i = 0; i < remainder; i++) {
 
-            int startIndex = i * (elementNumber + 1);
-            int endIndex = startIndex + elementNumber + 1;
+            startIndex = endIndex;
+            endIndex = startIndex + elementNumber + 1;
+
+            int start = startIndex;
+            int end = endIndex;
 
             threads[i] = new Thread(() -> {
-                arrCalculations(arr, startIndex, endIndex);
+                arrCalculations(arr, start, end);
             }
             );
+            threads[i].start();
         }
 
         for (int i = remainder; i < threads.length; i++) {
 
-            int startIndex = i * elementNumber;
-            int endIndex = startIndex + elementNumber;
+            startIndex = endIndex;
+            endIndex = startIndex + elementNumber;
+
+            int start = startIndex;
+            int end = endIndex;
 
             threads[i] = new Thread(() -> {
-                arrCalculations(arr, startIndex, endIndex);
+                arrCalculations(arr, start, end);
             }
             );
-        }
-
-        for (Thread thread: threads) {
-            thread.start();
+            threads[i].start();
         }
 
         try {
-            for (Thread thread: threads) {
+            for (Thread thread : threads) {
                 thread.join();
             }
         } catch (InterruptedException e) {
@@ -127,7 +134,7 @@ public class Main {
     public static void main(String[] args) {
         method1();
         method2();
-        method3(50);
+        method3(100);
 
 
     }
