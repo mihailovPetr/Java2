@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Main {
 
-    static final int size = 20000000;
+    static final int size = 10000000;
     static final int h = size / 2;
 
     static void arrCalculations(float[] arr, int startIndex) {
