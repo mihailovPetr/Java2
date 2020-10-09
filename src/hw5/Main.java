@@ -1,3 +1,5 @@
+package hw5;
+
 import sun.util.resources.ms.CalendarData_ms_MY;
 
 import java.util.Arrays;
@@ -132,9 +134,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        method1();
-        method2();
-        method3(100);
+        //method1();
+        //method2();
+        method3(20);
 
 
     }
